@@ -1,0 +1,151 @@
+project.name: @project.name@
+orderService.appName: @project.name@
+orderService.appVersion: @project.version@
+orderService.genericErrorMessage: "Something went wrong. Please try after sometime."
+
+# jpa/hibernate properties
+spring.jpa.hibernate.ddl-auto: validate
+spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.MariaDB103Dialect
+
+spring.jpa.show-sql: true
+
+
+# falcon data-source configurations
+orderService.data-source.jdbcUrl: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${DB_NAME}?zeroDateTimeBehavior=convertToNull
+orderService.data-source.username: ${DB_USERNAME}
+orderService.data-source.password: ${DB_PASS}
+orderService.data-source.databaseName: ${DB_NAME}
+orderService.data-source.driverClassName: com.mysql.jdbc.Driver
+orderService.data-source.hibernate.dialect: org.hibernate.dialect.MariaDB103Dialect
+orderService.data-source.type: com.zaxxer.hikari.HikariDataSource
+orderService.data-source.autoCommit: false
+orderService.data-source.generateUniqueName: false
+#data-source timeouts
+#orderService.data-source.minimumIdle: 50
+orderService.data-source.maximumPoolSize: ${MAX_POOLSIZE}
+#orderService.data-source.idleTimeout: 30000
+#orderService.data-source.maxLifetime: 2000000
+#orderService.data-source.connectionTimeout: ${CONNECTION_TIMEOUT}
+orderService.data-source.leakDetectionThreshold: 500
+orderService.data-source.max-lifetime: 1000
+#data-source and pool names
+orderService.data-source.name: order-service-datasource
+orderService.data-source.poolName: order-service-pool
+
+server.servlet.contextPath: /orderService
+
+orderService.orderTopic: order
+orderService.kafkaProperties:
+  producerProperties:
+    "[key.serializer]": org.apache.kafka.common.serialization.StringSerializer
+    "[value.serializer]": org.apache.kafka.common.serialization.StringSerializer
+    "[acks]": "all"
+    "[bootstrap.servers]": ${KAFKA_BOOTSTRAP_SERVERS}
+    "[retries]": ${KAFKA_RETRIES}
+    "[client.id]": "order-service"
+    "[max.block.ms]": 3000
+
+################################################ common properties end #################################################
+################################################ common properties end #################################################
+################################################ common properties end #################################################
+################################################ common properties end #################################################
+
+
+
+
+################################################ local properties start ################################################
+################################################ local properties start ################################################
+################################################ local properties start ################################################
+
+---
+spring.profiles: local
+orderService.graylogHost: ${GRAYLOG_HOST}
+orderService.graylogPort: ${GRAYLOG_PORT}
+################################################ local properties end ##################################################
+################################################ local properties end ##################################################
+################################################ local properties end ##################################################
+
+
+
+
+
+################################################ development properties start ###########################################
+################################################ development properties start ###########################################
+################################################ development properties start ###########################################
+
+---
+spring.profiles: development
+
+################################################ development properties end ###########################################
+################################################ development properties end ###########################################
+################################################ development properties end ###########################################
+
+
+
+
+
+################################################ qa properties start ###########################################
+################################################ qa properties start ###########################################
+################################################ qa properties start ###########################################
+
+---
+spring.profiles: qa
+orderService.graylogHost: ${GRAYLOG_HOST}
+orderService.graylogPort: ${GRAYLOG_PORT}
+
+################################################ qa properties end ###########################################
+################################################ qa properties end ###########################################
+################################################ qa properties end ###########################################
+
+
+
+
+
+
+
+
+################################################ uat properties start ###########################################
+################################################ uat properties start ###########################################
+################################################ uat properties start ###########################################
+
+---
+spring.profiles: uat
+
+################################################ uat properties end ###########################################
+################################################ uat properties end ###########################################
+################################################ uat properties end ###########################################
+
+
+
+
+
+
+
+################################################ rfs properties start ###########################################
+################################################ rfs properties start ###########################################
+################################################ rfs properties start ###########################################
+
+---
+spring.profiles: rfs
+orderService.graylogHost: ${GRAYLOG_HOST}
+orderService.graylogPort: ${GRAYLOG_PORT}
+################################################ rfs properties end ###########################################
+################################################ rfs properties end ###########################################
+################################################ rfs properties end ###########################################
+
+
+
+
+
+################################################ production properties start ###########################################
+################################################ production properties start ###########################################
+################################################ production properties start ###########################################
+
+---
+spring.profiles: production
+orderService.graylogHost: ${GRAYLOG_HOST}
+orderService.graylogPort: ${GRAYLOG_PORT}
+
+################################################ production properties end ###########################################
+################################################ production properties end ###########################################
+################################################ production properties end ###########################################
